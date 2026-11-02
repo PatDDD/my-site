@@ -1,0 +1,4 @@
+---
+import Layout from '../../layouts/Layout.astro';import {getCollection,render} from 'astro:content';import {published,sitePath} from '../../lib/content.mjs';export async function getStaticPaths(){return published(await getCollection('work')).map(entry=>({params:{id:entry.id},props:{entry}}))}const {entry}=Astro.props;const {Content}=await render(entry);
+---
+<Layout title={entry.data.title} description={entry.data.summary}><article class="reading"><a class="back" href={sitePath('/work/',import.meta.env.BASE_URL)}>← Selected work</a><header class="article-heading"><p class="eyebrow">Case study</p><h1>{entry.data.title}</h1><p class="intro">{entry.data.summary}</p><div class="tags">{entry.data.tags.map((tag:string)=><span>{tag}</span>)}</div></header><div class="prose"><Content/></div></article></Layout>

@@ -1,0 +1,4 @@
+---
+import Layout from '../../layouts/Layout.astro';import ProjectList from '../../components/ProjectList.astro';import {getCollection} from 'astro:content';import {published} from '../../lib/content.mjs';const projects=published(await getCollection('work'));
+---
+<Layout title="Selected work" description="Selected projects across analytics, data science and data engineering."><section class="page-heading"><p class="eyebrow">Questions, methods & systems</p><h1>Selected <em>work.</em></h1><p class="intro">A closer look at the problems I work on, the methods behind the analysis, and the foundations that support it.</p></section><ProjectList projects={projects}/></Layout>

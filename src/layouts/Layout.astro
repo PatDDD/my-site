@@ -1,0 +1,11 @@
+---
+import '../styles/global.css';
+import {profile} from '../data/profile';
+import {sitePath} from '../lib/content.mjs';
+interface Props {title:string;description?:string;noindex?:boolean}
+const {title,description=profile.intro,noindex=false}=Astro.props;
+const href=(path:string)=>sitePath(path,import.meta.env.BASE_URL);
+const canonical=new URL(Astro.url.pathname,Astro.site);
+const local=canonical.hostname==='localhost';
+---
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><title>{title} · Kunsheng Du</title><link rel="icon" type="image/svg+xml" href={href('/favicon.svg')}/><link rel="canonical" href={canonical}/><meta property="og:title" content={`${title} · Kunsheng Du`}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta property="og:url" content={canonical}/>{(noindex||local)&&<meta name="robots" content="noindex,nofollow"/>}</head><body><a class="skip" href="#main">Skip to content</a><header class="site-header wrap"><a class="brand" href={href('/')}>Kunsheng Du<span>.</span> <small>Patrick</small></a><nav aria-label="Main navigation">{[['Home','/'],['Work','/work/'],['About','/about/'],['Thoughts','/thoughts/']].map(([label,path])=><a href={href(path)} aria-current={Astro.url.pathname===href(path)?'page':undefined}>{label}</a>)}<a class="contact-nav" href={profile.linkedin}>Let’s talk ↗</a></nav></header><main id="main" class="wrap"><slot/></main><footer class="wrap"><span>Kunsheng (Patrick) Du · Analytics, data science & engineering</span><div><a href={profile.github}>GitHub ↗</a><a href={profile.linkedin}>LinkedIn ↗</a></div></footer></body></html>

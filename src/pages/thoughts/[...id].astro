@@ -1,0 +1,4 @@
+---
+import Layout from '../../layouts/Layout.astro';import {getCollection,render} from 'astro:content';import {published,sitePath} from '../../lib/content.mjs';export async function getStaticPaths(){return published(await getCollection('thoughts')).map(entry=>({params:{id:entry.id},props:{entry}}))}const {entry}=Astro.props;const {Content}=await render(entry);
+---
+<Layout title={entry.data.title} description={entry.data.summary}><article class="reading"><a class="back" href={sitePath('/thoughts/',import.meta.env.BASE_URL)}>← Thoughts</a><header class="article-heading"><time class="eyebrow" datetime={entry.data.date.toISOString()}>{entry.data.date.toISOString().slice(0,10)}</time><h1>{entry.data.title}</h1><p class="intro">{entry.data.summary}</p></header><div class="prose"><Content/></div></article></Layout>

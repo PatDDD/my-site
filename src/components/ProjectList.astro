@@ -1,0 +1,7 @@
+---
+import type {CollectionEntry} from 'astro:content';
+import {sitePath} from '../lib/content.mjs';
+interface Props {projects:CollectionEntry<'work'>[]}
+const {projects}=Astro.props;
+---
+<div class="project-list">{projects.map((project,index)=><article class="project-row"><span class="project-number" aria-hidden="true">{String(index+1).padStart(2,'0')}</span><div><p class="eyebrow">{project.data.tags[0]}</p><h3><a href={sitePath(`/work/${project.id}/`,import.meta.env.BASE_URL)}>{project.data.title}</a></h3><p>{project.data.summary}</p><div class="tags">{project.data.tags.map(tag=><span>{tag}</span>)}</div></div><a class="project-arrow" aria-label={`Read ${project.data.title}`} href={sitePath(`/work/${project.id}/`,import.meta.env.BASE_URL)}>↗</a></article>)}</div>
