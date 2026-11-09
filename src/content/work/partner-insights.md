@@ -1,28 +1,33 @@
 ---
-title: Turning partner insights into product decisions
-summary: Designing experiments, measuring product journeys, and maintaining the pipelines and dashboards needed to understand partner-facing tools.
-tags: [Analytics, Experimentation, dbt, Product tracking]
+title: From product tracking to self-serve insights
+summary: Connecting product events to reusable metrics, self-service questions, and experiment reports—so stakeholders can get answers with less repeated analysis.
+tags: [Analytics, Product tracking, Semantic layer, Streamlit]
 draft: false
 featured: true
 ---
-## The problem
+## The challenge
 
-Partner-facing performance tools need to make useful information discoverable and help partners understand their opportunities. That requires both a clear measurement framework and evidence about how the product is used.
+“How many people viewed this chart?” “Who clicked this button?” A dashboard cannot anticipate every question. Without reusable tracking data, each follow-up can become another ad-hoc analysis request.
 
-## My contribution
+## One foundation, three ways to answer
 
-At Booking.com, I designed and analyzed experiments for a new peer-group launch intended to improve hotel partners’ awareness of peer performance. I also built and maintained Streamlit and Tableau dashboards and dbt pipelines for performance monitoring.
+I connected page tracking to structured event tables, creating a reusable foundation for stakeholder questions, product monitoring, and experiment measurement.
 
-For product tracking, I implemented Google Analytics instrumentation in the Opportunity Center. The analysis of entry paths informed homepage growth optimization.
+<figure class="impact-flow" aria-labelledby="tracking-flow-caption">
+<div class="flow-foundation"><div><small>Capture</small><strong>Page tracking</strong><span>Chart views · Button clicks</span></div><span class="flow-arrow" aria-hidden="true">→</span><div><small>Structure</small><strong>Event tables</strong><span>Reusable behavioral data</span></div></div>
+<div class="flow-divider" aria-hidden="true">↓</div>
+<div class="flow-branches">
+<div class="flow-branch"><small>Flexible questions</small><strong>Semantic layer + agent</strong><p>Stakeholders use the agent to answer questions about specific charts or buttons, beyond a dashboard’s predefined views.</p><span class="flow-benefit">Benefit: self-service access to detailed usage insights.</span></div>
+<div class="flow-branch"><small>Ongoing monitoring</small><strong>Streamlit dashboard</strong><p>Follow views, actions, and retention through a repeatable metrics view.</p><span class="flow-benefit">Benefit: routine answers without repeated analysis.</span></div>
+<div class="flow-branch"><small>Product evaluation</small><strong>Experiment metrics report</strong><p>Reuse behavioral measures to evaluate product experiments.</p><span class="flow-benefit">Benefit: unblock experiment measurement.</span></div>
+</div>
+<figcaption id="tracking-flow-caption">How tracking data connects to stakeholder needs. Arrows show data reuse, not measured uplift.</figcaption>
+</figure>
 
-## Questions and methods
+## Why it matters
 
-- How do partners enter and navigate the product?
-- Does a change help partners engage with the information?
-- Which metrics need continued monitoring after rollout?
+- **Less repeated analysis:** reusable tables and metrics reduce the need to rebuild the same analysis for each request.
+- **Easier access:** stakeholders already use the agent for detailed usage questions, while dashboards cover recurring monitoring needs.
+- **More consistent evidence:** shared behavioral measures support ongoing monitoring and experiment evaluation, rather than disconnected one-off counts.
 
-The work brought together experiment design, event tracking, analytical interpretation, and reusable data infrastructure.
-
-## Deliverables and outcomes
-
-Experiments informed the peer-group rollout, tracking analysis informed product optimization, and dashboards and pipelines supported monitoring. This summary omits internal traffic figures and rollout volumes.
+The impact is a shift from answering isolated requests to giving stakeholders reusable ways to find answers.

@@ -1,30 +1,35 @@
 ---
 title: Making a verification journey measurable
-summary: Connecting funnel analysis, matching-rule evaluation, and data pipelines to help teams understand and improve partner verification.
-tags: [Engineering, Analytics, Pipelines, Metric design]
+summary: Evaluating automated rules, locating funnel bottlenecks, and comparing countries and regions to guide improvements in business-partner verification.
+tags: [Analytics, Rule evaluation, Funnel analysis, Segmentation]
 draft: false
 featured: true
 ---
-## The problem
+## The challenge
 
-Partner verification spans multiple steps. A top-line completion number alone cannot explain where progress slows or which product changes deserve attention.
+A business partner can stall before submitting a form, during automated checks, or after a request for more details. An overall verification rate hides these different problems—and a higher pass rate alone does not establish that decisions are correct.
 
-## My contribution
+## The business-verification journey
 
-At Booking.com, I led an end-to-end bottleneck analysis of a partner verification program. I broke the funnel into three layers, making the journey from submission to final verification easier for stakeholders to understand.
+<figure class="impact-flow verification-flow" aria-labelledby="verification-caption">
+<div class="verification-step"><small>Start</small><strong>Verification request sent to the business</strong></div>
+<div class="flow-divider" aria-hidden="true">↓</div>
+<div class="verification-step"><strong>Partner fills in forms and submits</strong></div>
+<div class="flow-divider" aria-hidden="true">↓</div>
+<div class="verification-step"><strong>Automated verification & routing</strong></div>
+<div class="verification-paths">
+<div class="verification-path"><span class="verification-label">Pass ↓</span><div class="verification-success">Verified</div></div>
+<div class="verification-path"><span class="verification-label">Does not pass ↓</span><div class="verification-step"><strong>First-round manual verification</strong></div><div class="flow-divider" aria-hidden="true">↓</div><div class="verification-step"><strong>Manual result</strong></div><div class="verification-result"><span><b>Pass →</b> Verified</span><span><b>Does not pass ↓</b> Request more details from partner</span></div><div class="verification-loop"><strong>Partner resubmits → Manual verification</strong><span>Further review can lead to verification or another request for details.</span></div></div>
+</div>
+<figcaption id="verification-caption">Both automated and manual checks can complete verification. Requests for additional details create a return loop, not a one-way funnel.</figcaption>
+</figure>
 
-Alongside that analysis, I defined core verification metrics with stakeholders and owned data pipelines and dashboards for ongoing performance monitoring.
+## My contribution → decision value
 
-## Connecting analysis and engineering
+- **Evaluate automated rules.** Analyzed rule changes and estimated their effect on verification outcomes, aligning with business stakeholders and legal teams. This gave teams evidence to assess proposed changes against operational needs and legal requirements.
+- **Find where the journey stalls.** Examined form submission, automated outcomes, manual decisions, false positives, and resubmission. This separated partner drop-off from verification bottlenecks and highlighted where pass rates warranted investigation.
+- **Segment by country and region.** Compared journey performance across markets to reveal differences hidden by an overall average and guide more targeted investigation.
 
-The analysis needed a foundation that could be used repeatedly. Defining the measures, maintaining the pipelines, and presenting the funnel through dashboards made it possible to revisit the same questions as the product changed.
+## Why it matters
 
-I also applied matching logic and pass-rate estimation to evaluate improvements to automated verification rules.
-
-## Deliverables and outcomes
-
-- A layered view of the verification journey and its bottlenecks.
-- Shared metrics, data pipelines, and monitoring dashboards.
-- Evaluation of matching-rule changes and automated verification outcomes.
-
-This work supported product prioritization and improvements to automatic verification. Internal pass rates, data structures, and rule details are omitted here.
+The analysis made it clearer **where partners get stuck, which rule changes merit consideration, and where to focus improvement efforts**. Pass rates were interpreted alongside decision quality and partner follow-through, rather than treated as a target to maximize.
